@@ -36,9 +36,8 @@ internal class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
         var imageView: ImageView = itemView.findViewById(R.id.image)
 
         fun onBindData() {
-            imageView.setImageDrawable(null)
             Glide.with(imageView.context)
-                .load("https://picsum.photos/200")
+                .load("https://gizmodo.uol.com.br/wp-content/blogs.dir/8/files/2019/08/android-10-google.jpg")
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView)
 
