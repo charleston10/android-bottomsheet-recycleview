@@ -9,7 +9,9 @@ import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
 
-    private val bottomSheet by lazy { BottomSheetBehavior.from(findViewById(R.id.layout_bottom_sheet)) }
+    private val bottomSheetWithLayout by lazy { BottomSheetBehavior.from(findViewById(R.id.layout_bottom_sheet)) }
+    private val bottomSheetFragment by lazy { MyBottomSheet() }
+
     private var toggle = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,13 +21,16 @@ class MainActivity : AppCompatActivity() {
         bindList()
 
         findViewById<MaterialButton>(R.id.button).setOnClickListener {
-            bottomSheet.state =
+            bottomSheetWithLayout.state =
                 if (toggle) BottomSheetBehavior.STATE_EXPANDED else BottomSheetBehavior.STATE_COLLAPSED
 
             toggle = !toggle
         }
-    }
 
+        findViewById<MaterialButton>(R.id.buttonFragment).setOnClickListener {
+            bottomSheetFragment.show(supportFragmentManager, "bottomSheetFragment")
+        }
+    }
 
     private fun bindList() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)

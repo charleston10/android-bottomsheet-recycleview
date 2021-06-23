@@ -25,6 +25,10 @@ internal class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
         return 10
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     internal inner class ViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
@@ -32,8 +36,9 @@ internal class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
         var imageView: ImageView = itemView.findViewById(R.id.image)
 
         fun onBindData() {
+            imageView.setImageDrawable(null)
             Glide.with(imageView.context)
-                .load("https://gizmodo.uol.com.br/wp-content/blogs.dir/8/files/2019/08/android-10-google.jpg")
+                .load("https://picsum.photos/200")
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView)
 
